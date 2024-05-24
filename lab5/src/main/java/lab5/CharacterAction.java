@@ -184,7 +184,7 @@ public class CharacterAction {
         }
     }
 
-    public void AddItems(int k1, int k2, int k3, Items[] items) {
+    public void AddItems(int k1, int k2, int k3, Item[] items) {
         double i = Math.random();
         if (i < k1 * 0.01) {
             items[0].setCount(1);
@@ -248,7 +248,7 @@ public class CharacterAction {
         enemy.setLevel();
     }
 
-    public void UseItem(Player human, Items[] items, String name, JDialog dialog, JDialog dialog1) {
+    public void UseItem(Player human, Item[] items, String name, JDialog dialog, JDialog dialog1) {
         switch (name) {
             case "jRadioButton1":
                 if (items[0].getCount() > 0) {

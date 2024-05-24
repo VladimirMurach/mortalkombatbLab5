@@ -67,7 +67,7 @@ public class Fight {
             JProgressBar pr1, JProgressBar pr2, JDialog dialog1,
             JDialog dialog2, JFrame frame, ArrayList<Result> results,
             JLabel label4, JLabel label5, JLabel label6, JLabel label7,
-            JLabel label8, Items[] items, JRadioButton rb) {
+            JLabel label8, Item[] items, JRadioButton rb) {
         label7.setText("");
         human.setAttack(a);
 
@@ -106,7 +106,7 @@ public class Fight {
     }
 
     public void EndRound(Player human, Player enemy, JDialog dialog, JLabel label,
-            CharacterAction action, Items[] items) {
+            CharacterAction action, Item[] items) {
 
         dialog.setVisible(true);
         dialog.setBounds(300, 150, 700, 600);

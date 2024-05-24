@@ -1,11 +1,11 @@
 package lab5;
 
-public class Items {
+public class Item {
     
     private String name;
     private int count;
     
-    public Items(String n, int c){
+    public Item(String n, int c){
         this.name=n;
         this.count=c;
     }

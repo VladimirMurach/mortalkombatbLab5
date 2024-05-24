@@ -9,7 +9,7 @@ public class ChangeTexts {
     public void NewRoundTexts(Player human, Player enemy, JProgressBar pr1,
             JProgressBar pr2, JLabel label, JLabel label2, JLabel label3,
             JLabel label4, JLabel label5, JLabel label6, JLabel label7, JLabel label8, JLabel label9,
-            int i, Items[] items, JRadioButton rb1, JRadioButton rb2, JRadioButton rb3) {
+            int i, Item[] items, JRadioButton rb1, JRadioButton rb2, JRadioButton rb3) {
         label.setText(Integer.toString(((Human) human).getPoints()));
         label2.setText(Integer.toString(((Human) human).getExperience()) + "/" + ((Human) human).getNextExperience());
         label3.setText(Integer.toString(human.getLevel()) + " level");
@@ -52,7 +52,7 @@ public class ChangeTexts {
         }
     }
 
-    public void BagText(Items[] items, JRadioButton rb1, JRadioButton rb2, JRadioButton rb3) {
+    public void BagText(Item[] items, JRadioButton rb1, JRadioButton rb2, JRadioButton rb3) {
         rb1.setText(items[0].getName() + ", " + items[0].getCount() + " шт");
         rb2.setText(items[1].getName() + ", " + items[1].getCount() + " шт");
         rb3.setText(items[2].getName() + ", " + items[2].getCount() + " шт");
