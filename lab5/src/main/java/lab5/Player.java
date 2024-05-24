@@ -1,5 +1,6 @@
 package lab5;
 
+import java.util.HashMap;
 import javax.swing.ImageIcon;
 
 public class Player {
@@ -11,7 +12,7 @@ public class Player {
     private int points;
     private int experience;
     private int nextLevelExperience;
-    private Item[] items;
+    private HashMap<String, Integer> items;
     private ImageIcon icon;
     private int movesWithDebuff;
 
@@ -81,11 +82,11 @@ public class Player {
         this.nextLevelExperience = nextLevelExperience;
     }
 
-    public Item[] getItems() {
+    public HashMap<String, Integer> getItems() {
         return items;
     }
 
-    public void setItems(Item[] items) {
+    public void setItems(HashMap<String, Integer> items) {
         this.items = items;
     }
 
