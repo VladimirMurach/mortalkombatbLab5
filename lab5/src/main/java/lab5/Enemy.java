@@ -2,27 +2,31 @@ package lab5;
 
 import javax.swing.ImageIcon;
 
-public class Player {
-    
+public class Enemy {
+
+    private String name;
     private int level;
     private int health;
     private int maxhealth;
     private int damage;
-    private int points;
-    private int experience;
-    private int nextLevelExperience;
-    private Item[] items;
     private ImageIcon icon;
     private int movesWithDebuff;
 
-    public Player(int level, int maxhealth, int damage) {
+    public Enemy(String name, int level, int maxhealth, int damage, ImageIcon icon) {
         this.level = level;
+        this.health = maxhealth;
         this.maxhealth = maxhealth;
         this.damage = damage;
-        health = maxhealth;
-        points = 0;
-        experience = 0;
-        nextLevelExperience = 40;
+        this.icon = icon;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getLevel() {
@@ -57,38 +61,6 @@ public class Player {
         this.damage = damage;
     }
 
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
-
-    public int getExperience() {
-        return experience;
-    }
-
-    public void setExperience(int experience) {
-        this.experience = experience;
-    }
-
-    public int getNextLevelExperience() {
-        return nextLevelExperience;
-    }
-
-    public void setNextLevelExperience(int nextLevelExperience) {
-        this.nextLevelExperience = nextLevelExperience;
-    }
-
-    public Item[] getItems() {
-        return items;
-    }
-
-    public void setItems(Item[] items) {
-        this.items = items;
-    }
-
     public ImageIcon getIcon() {
         return icon;
     }
@@ -104,5 +76,5 @@ public class Player {
     public void setMovesWithDebuff(int movesWithDebuff) {
         this.movesWithDebuff = movesWithDebuff;
     }
-        
+
 }

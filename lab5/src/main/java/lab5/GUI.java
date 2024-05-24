@@ -1,7 +1,6 @@
 package lab5;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -10,9 +9,7 @@ public class GUI extends javax.swing.JFrame {
 
     Mediator mediator;
     Game game = new Game();
-    ArrayList<Player> enemiesList = null;
     Item[] items = new Item[3];
-    String nameButton = "";
     int locationsNumber = 0;
 
     public GUI() {

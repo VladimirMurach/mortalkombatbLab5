@@ -16,7 +16,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Game {
 
-    CharacterAction action = new CharacterAction();
     ChangeTexts change = new ChangeTexts();
     Fight fight = new Fight();
     private ArrayList<Result> results = new ArrayList<>();
@@ -68,11 +67,11 @@ public class Game {
         return this.results;
     }
 
-    public void ReadFromExcel() throws IOException{
-        XSSFWorkbook book = new XSSFWorkbook("C:\\Users\\Мария\\Desktop\\Results.xlsx");
+    public void readFromExcel() throws IOException{
+        XSSFWorkbook book = new XSSFWorkbook("Results.xlsx");
         XSSFSheet sh = book.getSheetAt(0);
-        for (int i=1; i<=sh.getLastRowNum();i++) {
-            results.add(new Result(sh.getRow(i).getCell(1).getStringCellValue(),(int)sh.getRow(i).getCell(2).getNumericCellValue()));
+        for (int i = 1; i <= sh.getLastRowNum(); i++) {
+            results.add(new Result(sh.getRow(i).getCell(1).getStringCellValue(), (int) sh.getRow(i).getCell(2).getNumericCellValue()));
         }
     }
     
