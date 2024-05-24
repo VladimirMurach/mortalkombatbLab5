@@ -1,18 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package mortalkombatbversion;
+package lab5;
 
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-/**
- *
- * @author Мария
- */
 public class JFrames extends javax.swing.JFrame {
     
     Game game = new Game();
@@ -957,15 +948,7 @@ public class JFrames extends javax.swing.JFrame {
                 jLabel17, jLabel16, jLabel6, jLabel19, jLabel12, jLabel13, jLabel9,
                 jLabel26, jLabel27, game.fight.i, items, jRadioButton1, jRadioButton2, jRadioButton3);
         
-        /*game.action.setEnemyes();
-        enemy = game.action.ChooseEnemy(jLabel4, jLabel5, jLabel10, jLabel13);
-                //a.ChooseEmemy(human, jLabel4, jProgressBar2, jLabel5, jLabel10, jLabel13);
         
-        //Fight f = new Fight();
-        
-        game.action.HP(human, jProgressBar1);
-        game.action.HP(enemy, jProgressBar2);
-        jProgressBar2.setMaximum(enemy.getMaxHealth());*/
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

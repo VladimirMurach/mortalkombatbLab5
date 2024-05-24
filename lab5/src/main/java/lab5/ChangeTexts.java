@@ -1,20 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package mortalkombatbversion;
+package lab5;
 
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 
-/**
- *
- * @author Мария
- */
 public class ChangeTexts {
-
-
 
     public void NewRoundTexts(Player human, Player enemy, JProgressBar pr1,
             JProgressBar pr2, JLabel label, JLabel label2, JLabel label3,
@@ -29,13 +19,9 @@ public class ChangeTexts {
         label7.setText(Integer.toString(human.getDamage()));
         if (i % 2 == 1) {
             label8.setText("Your turn");
+        } else {
+            label8.setText(enemy.getName() + "'s turn");
         }
-        else{
-            label8.setText(enemy.getName()+"'s turn");
-        }
-        /*rb1.setText(items[0].getName()+", "+items[0].getCount()+" шт");
-        rb2.setText(items[1].getName()+", "+items[1].getCount()+" шт");
-        rb3.setText(items[2].getName()+", "+items[2].getCount()+" шт");*/
         BagText(items, rb1, rb2, rb3);
         label9.setText("");
     }
@@ -53,25 +39,23 @@ public class ChangeTexts {
         }
         if (i % 2 == 1) {
             label3.setText("Your turn");
-        }
-        else{
-            label3.setText(enemy.getName()+"'s turn");
+        } else {
+            label3.setText(enemy.getName() + "'s turn");
         }
     }
-    
-    public void EndGameText(Human human, JLabel label){
-        if(human.getWin()==12){
+
+    public void EndGameText(Human human, JLabel label) {
+        if (human.getWin() == 12) {
             label.setText("Победа на вашей стороне");
-        }
-        else {
+        } else {
             label.setText("Победа не на вашей стороне");
         }
     }
-    
-    public void BagText( Items[] items, JRadioButton rb1, JRadioButton rb2, JRadioButton rb3){
-        rb1.setText(items[0].getName()+", "+items[0].getCount()+" шт");
-        rb2.setText(items[1].getName()+", "+items[1].getCount()+" шт");
-        rb3.setText(items[2].getName()+", "+items[2].getCount()+" шт");
+
+    public void BagText(Items[] items, JRadioButton rb1, JRadioButton rb2, JRadioButton rb3) {
+        rb1.setText(items[0].getName() + ", " + items[0].getCount() + " шт");
+        rb2.setText(items[1].getName() + ", " + items[1].getCount() + " шт");
+        rb3.setText(items[2].getName() + ", " + items[2].getCount() + " шт");
     }
 
 }
