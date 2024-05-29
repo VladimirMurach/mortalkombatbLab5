@@ -1,7 +1,6 @@
 package fightActions;
 
-import fighters.Enemy;
-import fighters.Player;
+import fighters.Fighter;
 
 public class Heal extends FightAction {
 
@@ -11,12 +10,12 @@ public class Heal extends FightAction {
     }
 
     @Override
-    public void realisation(Player player, Enemy enemy, String enemyActionType) {
-        switch (enemyActionType) {
+    public void realisation(Fighter fighter1, Fighter fighter2, String fighter2ActionType) {
+        switch (fighter2ActionType) {
             case "Hit" -> {
             }
             case "Block" -> {
-                player.setHealth((player.getMaxHealth() - player.getHealth()) / 2 + player.getHealth());
+                fighter1.setHealth((fighter1.getMaxHealth() - fighter1.getHealth()) / 2 + fighter1.getHealth());
             }
             case "Debuff" -> {
             }

@@ -1,7 +1,6 @@
 package fightActions;
 
-import fighters.Enemy;
-import fighters.Player;
+import fighters.Fighter;
 
 public class Hit extends FightAction {
 
@@ -11,32 +10,30 @@ public class Hit extends FightAction {
     }
 
     @Override
-    public void realisation(Player player, Enemy enemy, String enemyActionType) {
-        switch (enemyActionType) {
+    public void realisation(Fighter fighter1, Fighter fighter2, String fighter2ActionType) {
+        switch (fighter2ActionType) {
             case "Hit" -> {
-                if (enemy.isDebuffed() & player.isDebuffed()){
-                    enemy.setHealth((int) (-player.getDamage()*1.25/2) + enemy.getHealth());
+                if (fighter2.isDebuffed() & fighter1.isDebuffed()) {
+                    fighter2.setHealth((int) (-fighter1.getDamage() * 1.25 / 2) + fighter2.getHealth());
                 }
-                if (enemy.isDebuffed() & !player.isDebuffed()){
-                    enemy.setHealth((int) (-player.getDamage()*1.25) + enemy.getHealth());
+                if (fighter2.isDebuffed() & !fighter1.isDebuffed()) {
+                    fighter2.setHealth((int) (-fighter1.getDamage() * 1.25) + fighter2.getHealth());
                 }
-                if (!enemy.isDebuffed() & player.isDebuffed()){
-                    enemy.setHealth((int) (-player.getDamage()/2) + enemy.getHealth());
+                if (!fighter2.isDebuffed() & fighter1.isDebuffed()) {
+                    fighter2.setHealth((int) (-fighter1.getDamage() / 2) + fighter2.getHealth());
                 }
-                if (!enemy.isDebuffed() & !player.isDebuffed()){
-                    enemy.setHealth((int) (-player.getDamage()) + enemy.getHealth());
+                if (!fighter2.isDebuffed() & !fighter1.isDebuffed()) {
+                    fighter2.setHealth((int) (-fighter1.getDamage()) + fighter2.getHealth());
                 }
             }
             case "Block" -> {
-                if (Math.random() < 0.5) {
-                    enemy.setHealth(-player.getDamage() / 2 + enemy.getHealth());
-                }
+                fighter1.setHealth(-fighter2.getDamage() / 2 + fighter1.getHealth());
             }
             case "Debuff" -> {
-                enemy.setHealth((int) (-player.getDamage()*1.15) + enemy.getHealth());
+                fighter2.setHealth((int) (-fighter1.getDamage() * 1.15) + fighter2.getHealth());
             }
             case "Heal" -> {
-                enemy.setHealth(-player.getDamage()*2 + enemy.getHealth());
+                fighter2.setHealth(-fighter1.getDamage() * 2 + fighter2.getHealth());
             }
         }
     }

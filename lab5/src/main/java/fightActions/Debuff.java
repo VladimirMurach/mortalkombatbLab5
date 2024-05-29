@@ -1,7 +1,6 @@
 package fightActions;
 
-import fighters.Enemy;
-import fighters.Player;
+import fighters.Fighter;
 
 public class Debuff extends FightAction {
 
@@ -11,13 +10,13 @@ public class Debuff extends FightAction {
     }
 
     @Override
-    public void realisation(Player player, Enemy enemy, String enemyActionType) {
-        switch (enemyActionType) {
+    public void realisation(Fighter fighter1, Fighter fighter2, String fighter2ActionType) {
+        switch (fighter2ActionType) {
             case "Hit" -> {
             }
             case "Block" -> {
                 if (Math.random()<0.75){
-                    enemy.setMovesWithDebuff(enemy.getLevel());
+                    fighter2.setMovesWithDebuff(fighter1.getLevel());
                 }
             }
             case "Debuff" -> {

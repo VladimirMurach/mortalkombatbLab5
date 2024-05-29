@@ -1,7 +1,6 @@
 package fightActions;
 
-import fighters.Enemy;
-import fighters.Player;
+import fighters.Fighter;
 
 public class Block extends FightAction {
 
@@ -11,7 +10,7 @@ public class Block extends FightAction {
     }
 
     @Override
-    public void realisation(Player player, Enemy enemy, String enemyActionType) {
+    public void realisation(Fighter fighter1, Fighter fighter2, String fighter2ActionType) {
         
     }
 }
