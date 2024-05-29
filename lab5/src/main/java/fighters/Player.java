@@ -1,6 +1,5 @@
 package fighters;
 
-import javax.swing.ImageIcon;
 import lab5.Item;
 
 public class Player extends Fighter {
@@ -10,8 +9,8 @@ public class Player extends Fighter {
     private int nextLevelExperience;
     private Item[] items;
 
-    public Player(int level, int maxhealth, int damage, ImageIcon icon) {
-        super(level, maxhealth, damage, icon);
+    public Player(int level, int maxhealth, int damage) {
+        super(level, maxhealth, damage);
         points = 0;
         experience = 0;
         nextLevelExperience = 40;

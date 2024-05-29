@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Fight {
+
     Mediator mediator;
     Player player;
     Enemy enemy;
@@ -25,10 +26,10 @@ public class Fight {
         }
     };
 
-    public void setMediator(Mediator mediator){
+    public void setMediator(Mediator mediator) {
         this.mediator = mediator;
     }
-    
+
     public void setPlayer(Player player) {
         this.player = player;
     }
@@ -73,7 +74,7 @@ public class Fight {
 
     }
 
-    public void hit(int a, HashMap<String, Integer> results, int locationsNumber, Enemy[] enemiesList) {
+    public void hit(int a, ArrayList<Result> results, int locationsNumber, Enemy[] enemiesList) {
         GameActions action = new GameActions();
         FightAction enemyAction = action.chooseEnemyAction(enemy, new ArrayList<>(actionsList));
         switch (a) {
@@ -106,7 +107,7 @@ public class Fight {
         checkDeath(results, locationsNumber, enemiesList);
     }
 
-    public void checkDeath(HashMap<String, Integer> results, int locationsNumber, Enemy[] enemiesList) {
+    public void checkDeath(ArrayList<Result> results, int locationsNumber, Enemy[] enemiesList) {
         if (player.getHealth() <= 0 & player.getItems()[2].getCount() > 0) {
             player.setHealth((int) (player.getMaxHealth() * 0.05));
             player.getItems()[2].setCount(-1);
@@ -159,7 +160,7 @@ public class Fight {
         location.resetLocation(false, player.getLevel());
     }
 
-    public void endFinalRound(HashMap<String, Integer> results, Enemy[] enemiesList ) {
+    public void endFinalRound(ArrayList<Result> results, Enemy[] enemiesList) {
         GameActions action = new GameActions();
         action.resetEnemies(enemiesList);
         String text = "Победа не на вашей стороне";
@@ -172,9 +173,8 @@ public class Fight {
             top = true;
         } else {
             int a = 0;
-            for (Map.Entry<String, Integer> entry : results.entrySet()) {
-                Integer points = entry.getValue();
-                if (player.getPoints() < points) {
+            for (int j = 0; j < results.size(); j++) {
+                if (player.getPoints() < results.get(j).getPoints()) {
                     a++;
                 }
             }

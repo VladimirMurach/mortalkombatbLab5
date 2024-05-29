@@ -27,8 +27,8 @@ public class GUI extends javax.swing.JFrame {
         itemsGroup.add(firstItemButton);
         itemsGroup.add(secondItemButton);
         itemsGroup.add(thirdItemButton);
-        items[0] = new Item("Малое зелье лечение", 0);
-        items[1] = new Item("Большое зелье лечение", 0);
+        items[0] = new Item("Малое зелье лечения", 0);
+        items[1] = new Item("Большое зелье лечения", 0);
         items[2] = new Item("Крест возрождения", 0);
         mediator = new Mediator(enemyHealthLabel, playerHealthLabel, endFightDialog, pointsValueLabel, experienceValueLabel,
                 playerLevelLabel, enemyLevelLabel, playerDamageValueLabel, endRoundLabel, playerHealthBar,

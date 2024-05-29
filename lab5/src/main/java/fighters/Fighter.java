@@ -11,12 +11,11 @@ public abstract class Fighter {
     private ImageIcon icon;
     private int movesWithDebuff;
     
-    public Fighter(int level, int maxhealth, int damage, ImageIcon icon) {
+    public Fighter(int level, int maxhealth, int damage) {
         this.level = level;
         this.health = maxhealth;
         this.maxHealth = maxhealth;
         this.damage = damage;
-        this.icon = icon;
         movesWithDebuff = 0;
     }
 

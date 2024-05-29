@@ -1,5 +1,6 @@
 package lab5;
 
+import fighters.Enemy;
 import fighters.Player;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -17,33 +18,31 @@ public class Game {
 
     public GameActions action = new GameActions();
     public Fight fight = new Fight();
-    private final ArrayList<Result> results = new ArrayList<>();
-    private final Player enemies[] = new Player[5];
-
-    EnemyFabric fabric = new EnemyFabric();
+    private final ArrayList<Result> results =  new ArrayList<>();
+    private final Enemy enemies[] = new Enemy[5];
 
     public void setEnemies() {
-        enemies[0] = fabric.create(0, 0);
-        enemies[1] = fabric.create(1, 0);
-        enemies[2] = fabric.create(2, 0);
-        enemies[3] = fabric.create(3, 0);
-        enemies[4] = fabric.create(4, 0);
+        enemies[0] = new Enemy("Baraka", 1, 100, 12);
+        enemies[1] = new Enemy("Sub-Zero", 1, 60, 16);
+        enemies[2] = new Enemy("Liu Kang", 1, 70, 20);
+        enemies[3] = new Enemy("Sonya Blade", 1, 80, 16);
+        enemies[4] = new Enemy("Shao Kahn", 3, 100, 30);
     }
 
-    public Player[] getEnemies() {
+    public Enemy[] getEnemies() {
         return this.enemies;
     }
 
-    public Human newHuman(Mediator mediator, Items[] items) {
-        Human human = new Human(0, 80, 16, 1);
-        mediator.setHealthBar(human);
-        mediator.setPlayerMaxHealthBar(human);
-        human.setItems(items);
-        return human;
+    public Player newPlayer(Mediator mediator, Item[] items) {
+        Player player = new Player(0, 80, 16);
+        mediator.setHealthBar(player);
+        mediator.setPlayerMaxHealthBar(player);
+        player.setItems(items);
+        return player;
     }
 
-    public void endGameTop(Human human, JTextField text, JTable table) throws IOException {
-        results.add(new Result(text.getText(), human.getPoints()));
+    public void endGameTop(Player player, JTextField text, JTable table) throws IOException {
+        results.add(new Result(text.getText(), player.getPoints()));
         results.sort(Comparator.comparing(Result::getPoints).reversed());
         writeToTable(table);
         writeToExcel();

@@ -1,13 +1,11 @@
 package fighters;
 
-import javax.swing.ImageIcon;
-
 public class Enemy extends Fighter{
 
     private String name;
 
-    public Enemy(String name, int level, int maxhealth, int damage, ImageIcon icon) {
-        super(level, maxhealth, damage, icon);
+    public Enemy(String name, int level, int maxhealth, int damage) {
+        super(level, maxhealth, damage);
         this.name = name;
     }
 
