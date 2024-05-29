@@ -1,46 +1,46 @@
 package lab5;
 
-import fighters.Player;
+import fighters.Enemy;
 import java.util.ArrayList;
 
 public class Location {
 
     public int currentLocation = 1;
     public int currentEnemyNumber = 0;
-    ArrayList<Player> currentEnemiesList = new ArrayList<>();
-    Player[] fullEnemiesList = null;
+    ArrayList<Enemy> currentEnemiesList = new ArrayList<>();
+    Enemy[] fullEnemiesList = null;
     public int locationSize;
 
-    public void setFullEnemiesList(Player[] list) {
+    public void setFullEnemiesList(Enemy[] list) {
         fullEnemiesList = list;
     }
 
-    public ArrayList<Player> getEnemiesAtLocation() {
+    public ArrayList<Enemy> getEnemiesAtLocation() {
         return currentEnemiesList;
     }
 
     public void setEnemiesAtLocation(int i) {
         currentEnemiesList = new ArrayList<>();
-        Player enemy = null;
+        Enemy enemy = null;
         locationSize = 1 + (int) (Math.random() * i);
         for (int j = 0; j < locationSize; j++) {
             int k = (int) (Math.random() * 4);
             switch (k) {
                 case 0 -> {
                     enemy = fullEnemiesList[0];
-                    enemy.setPhoto("B.jpg");
+                    enemy.setIcon("B.jpg");
                 }
                 case 1 -> {
                     enemy = fullEnemiesList[1];
-                    enemy.setPhoto("SZ.jpg");
+                    enemy.setIcon("SZ.jpg");
                 }
                 case 2 -> {
                     enemy = fullEnemiesList[2];
-                    enemy.setPhoto("LK.jpg");
+                    enemy.setIcon("LK.jpg");
                 }
                 case 3 -> {
                     enemy = fullEnemiesList[3];
-                    enemy.setPhoto("SB.jpg");
+                    enemy.setIcon("SB.jpg");
                 }
             }
             currentEnemiesList.add(enemy);
@@ -68,15 +68,15 @@ public class Location {
         return currentEnemyNumber;
     }
 
-    public Player getCurrentEnemy() {
-        Player enemy = null;
+    public Enemy getCurrentEnemy() {
+        Enemy enemy = null;
         if (currentEnemyNumber != locationSize) {
             currentEnemyNumber += 1;
             return currentEnemiesList.get(currentEnemyNumber - 1);
         } else {
             currentEnemyNumber = 0;
             enemy = fullEnemiesList[4];
-            enemy.setPhoto("SK.jpg");
+            enemy.setIcon("SK.jpg");
             return enemy;
         }
     }

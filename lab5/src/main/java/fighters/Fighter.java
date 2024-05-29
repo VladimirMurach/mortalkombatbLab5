@@ -56,8 +56,8 @@ public abstract class Fighter {
         return icon;
     }
 
-    public void setIcon(ImageIcon icon) {
-        this.icon = icon;
+    public void setIcon(String path) {
+        icon = new ImageIcon(path);
     }
 
     public int getMovesWithDebuff() {
