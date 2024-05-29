@@ -76,7 +76,7 @@ public class Location {
         } else {
             currentEnemyNumber = 0;
             enemy = fullEnemiesList[4];
-            enemy.setIcon("SK.jpg");
+            enemy.setIcon("SecretBoss.jpg");
             return enemy;
         }
     }

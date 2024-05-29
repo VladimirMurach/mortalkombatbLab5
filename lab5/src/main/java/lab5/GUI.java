@@ -1,5 +1,6 @@
 package lab5;
 
+import fighters.Player;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,6 +11,8 @@ public class GUI extends javax.swing.JFrame {
     Mediator mediator;
     Game game = new Game();
     int locationsNumber = 0;
+    Item[] items = new Item[3];
+    String nameButton = "";
 
     public GUI() {
         initComponents();
@@ -1123,14 +1126,14 @@ public class GUI extends javax.swing.JFrame {
         } else {
             enemyNumberLabel.setText("Финальный босс локации!");
         }
-        if (game.action.checkExperience(game.fight.getHuman())) {
-            game.action.levelUp(game.fight.getHuman(), game.getEnemies());
+        if (game.action.checkExperience(game.fight.getPlayer())) {
+            game.action.levelUp(game.fight.getPlayer(), game.getEnemies());
             game.fight.location.setFullEnemiesList(game.getEnemies());
             levelUp.setVisible(true);
             levelUp.setBounds(300, 200, 430, 350);
         }
         game.fight.setEnemy(game.fight.location.getCurrentEnemy());
-        enemyIconLabel.setIcon(game.fight.getEnemy().getPhoto());
+        enemyIconLabel.setIcon(game.fight.getEnemy().getIcon());
         enemyDamageValueLabel.setText(Integer.toString(game.fight.getEnemy().getDamage()));
         enemyHealthLabel.setText(Integer.toString(game.fight.getEnemy().getHealth()) + "/" + Integer.toString(game.fight.getEnemy().getMaxHealth()));
         enemyHeroLabel.setText(game.fight.getEnemy().getName());
@@ -1138,7 +1141,7 @@ public class GUI extends javax.swing.JFrame {
         enemyHealthBar.setMaximum(game.fight.getEnemy().getMaxHealth());
         game.fight.newRound();
 
-        mediator.setNewRoundTexts(game.fight.getHuman(), game.fight.getEnemy(), game.fight.getHuman().getItems());
+        mediator.setNewRoundTexts(game.fight.getPlayer(), game.fight.getEnemy(), game.fight.getPlayer().getItems());
 
         endFightDialog.dispose();
     }//GEN-LAST:event_nextRoundButtonActionPerformed
@@ -1149,7 +1152,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void endGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endGameButtonActionPerformed
         try {
-            game.endGameTop(game.fight.getHuman(), enterNameField, recordsTable);
+            game.endGameTop(game.fight.getPlayer(), enterNameField, recordsTable);
         } catch (IOException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1188,11 +1191,11 @@ public class GUI extends javax.swing.JFrame {
         if (thirdItemButton.isSelected()) {
             nameButton = "Third item";
         }
-        Human human = game.fight.getHuman();
-        game.action.useItem(human, human.getItems(), nameButton, mediator);
-        mediator.setHealthBar(human);
-        playerHealthLabel.setText(human.getHealth() + "/" + human.getMaxHealth());
-        mediator.setBagText(human.getItems());
+        Player player = game.fight.getPlayer();
+        game.action.useItem(player, player.getItems(), nameButton, mediator);
+        mediator.setHealthBar(player);
+        playerHealthLabel.setText(player.getHealth() + "/" + player.getMaxHealth());
+        mediator.setBagText(player.getItems());
     }//GEN-LAST:event_useItemButtonActionPerformed
 
     private void itemsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemsButtonActionPerformed
@@ -1208,8 +1211,8 @@ public class GUI extends javax.swing.JFrame {
         setLocationsFrame.setVisible(false);
         locationsNumber = Integer.parseInt(setLocationsField.getText());
         locationLabel.setText("Текущая локация: " + game.fight.location.getCurrentLocation() + "/" + locationsNumber);
-        game.fight.setHuman(game.newHuman(mediator, items));
-        game.fight.location.setEnemiesAtLocation(game.fight.getHuman().getLevel());
+        game.fight.setPlayer(game.newPlayer(mediator, items));
+        game.fight.location.setEnemiesAtLocation(game.fight.getPlayer().getLevel());
         fightFrame.setVisible(true);
         fightFrame.setSize(1000, 700);
         if ((game.fight.location.getCurrentEnemyNumber() + 1) <= game.fight.location.getEnemiesAtLocation().size()) {
@@ -1218,7 +1221,7 @@ public class GUI extends javax.swing.JFrame {
             enemyNumberLabel.setText("Финальный босс локации!");
         }
         game.fight.setEnemy(game.fight.location.getCurrentEnemy());
-        enemyIconLabel.setIcon(game.fight.getEnemy().getPhoto());
+        enemyIconLabel.setIcon(game.fight.getEnemy().getIcon());
         enemyDamageValueLabel.setText(Integer.toString(game.fight.getEnemy().getDamage()));
         enemyHealthLabel.setText(Integer.toString(game.fight.getEnemy().getHealth()) + "/" + Integer.toString(game.fight.getEnemy().getMaxHealth()));
         enemyHeroLabel.setText(game.fight.getEnemy().getName());
@@ -1227,7 +1230,7 @@ public class GUI extends javax.swing.JFrame {
 
         game.fight.newRound();
 
-        mediator.setNewRoundTexts(game.fight.getHuman(), game.fight.getEnemy(), game.fight.getHuman().getItems());
+        mediator.setNewRoundTexts(game.fight.getPlayer(), game.fight.getEnemy(), game.fight.getPlayer().getItems());
 
         endFightDialog.dispose();
     }//GEN-LAST:event_startWithLocationsButtonActionPerformed
@@ -1242,11 +1245,11 @@ public class GUI extends javax.swing.JFrame {
 
     private void chooseAttributeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseAttributeButtonActionPerformed
         if (healthButton.isSelected()) {
-            game.action.addHealthHuman(game.fight.getHuman());
+            game.action.addHealthPlayer(game.fight.getPlayer());
         } else {
-            game.action.addDamageHuman(game.fight.getHuman());
+            game.action.addDamagePlayer(game.fight.getPlayer());
         }
-        mediator.setNewRoundTexts(game.fight.getHuman(), game.fight.getEnemy(), game.fight.getHuman().getItems());
+        mediator.setNewRoundTexts(game.fight.getPlayer(), game.fight.getEnemy(), game.fight.getPlayer().getItems());
         levelUp.dispose();
     }//GEN-LAST:event_chooseAttributeButtonActionPerformed
 

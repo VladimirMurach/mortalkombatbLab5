@@ -14,7 +14,7 @@ public class GameActions {
             case "Sub-Zero" -> {
                 return list.get((int) (Math.random() * 3));
             }
-            case "Shao Kahn" -> {
+            case "Lord Islam Maximov" -> {
                 list.remove(2);
                 return list.get((int) (Math.random() * 3));
             }
@@ -119,7 +119,7 @@ public class GameActions {
                     enemy.setDamage(16);
                     enemy.setMaxHealth(80);
                 }
-                case "Shao Kahn" -> {
+                case "Lord Islam Maximov" -> {
                     enemy.setLevel(1);
                     enemy.setDamage(30);
                     enemy.setMaxHealth(100);
