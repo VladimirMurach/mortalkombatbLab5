@@ -1,5 +1,6 @@
 package lab5;
 
+import fighters.Player;
 import fightActions.Debuff;
 import fightActions.FightAction;
 import fightActions.Hit;

@@ -1,5 +1,6 @@
 package lab5;
 
+import fighters.Player;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;

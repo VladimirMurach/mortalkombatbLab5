@@ -1,4 +1,4 @@
-package lab5;
+package fighters;
 
 import javax.swing.ImageIcon;
 

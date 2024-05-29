@@ -1,5 +1,6 @@
 package lab5;
 
+import fighters.Player;
 import java.util.ArrayList;
 
 public class Location {

@@ -1,7 +1,7 @@
 package fightActions;
 
-import lab5.Enemy;
-import lab5.Player;
+import fighters.Enemy;
+import fighters.Player;
 
 public class Block extends FightAction {
 

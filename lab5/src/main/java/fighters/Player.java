@@ -1,4 +1,4 @@
-package lab5;
+package fighters;
 
 import java.util.HashMap;
 import javax.swing.ImageIcon;

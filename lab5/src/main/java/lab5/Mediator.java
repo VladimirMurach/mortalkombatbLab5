@@ -1,5 +1,6 @@
 package lab5;
 
+import fighters.Player;
 import fightActions.FightAction;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
