@@ -9,7 +9,6 @@ public class GUI extends javax.swing.JFrame {
 
     Mediator mediator;
     Game game = new Game();
-    Item[] items = new Item[3];
     int locationsNumber = 0;
 
     public GUI() {
