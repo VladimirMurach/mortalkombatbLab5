@@ -71,4 +71,12 @@ public abstract class Fighter {
     public boolean isDebuffed() {
         return movesWithDebuff > 0;
     }
+    
+    public void loseDebuffTurn() {
+        if (movesWithDebuff > 0) {
+            movesWithDebuff--;
+        }
+    }
+
+    public abstract String getName();
 }

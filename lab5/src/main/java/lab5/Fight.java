@@ -1,17 +1,20 @@
 package lab5;
 
-import fighters.Player;
+import fighters.Enemy;
 import fightActions.Debuff;
 import fightActions.FightAction;
 import fightActions.Hit;
 import fightActions.Heal;
 import fightActions.Block;
+import fighters.Player;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Fight {
     Mediator mediator;
-    Human human;
-    Player enemy;
+    Player player;
+    Enemy enemy;
     public Location location = new Location();
     public ArrayList<FightAction> actionsList = new ArrayList<>() {
         {
@@ -26,30 +29,30 @@ public class Fight {
         this.mediator = mediator;
     }
     
-    public void setHuman(Human human) {
-        this.human = human;
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
-    public void setEnemy(Player enemy) {
+    public void setEnemy(Enemy enemy) {
         this.enemy = enemy;
     }
 
-    public Human getHuman() {
-        return this.human;
+    public Player getPlayer() {
+        return this.player;
     }
 
-    public Player getEnemy() {
+    public Enemy getEnemy() {
         return this.enemy;
     }
 
     public void playerMove(FightAction enemyAction, FightAction playerAction) {
-        mediator.setActionLabels(enemy, human, enemyAction, playerAction);
-        playerAction.realisation(human, enemy, enemyAction.getType());
+        mediator.setActionLabels(enemy, player, enemyAction, playerAction);
+        playerAction.realisation(player, enemy, enemyAction.getType());
     }
 
     public void enemyMove(FightAction enemyAction, FightAction playerAction) {
-        mediator.setActionLabels(human, enemy, enemyAction, playerAction);
-        playerAction.realisation(enemy, human, enemyAction.getType());
+        mediator.setActionLabels(player, enemy, enemyAction, playerAction);
+        playerAction.realisation(enemy, player, enemyAction.getType());
     }
 
     public void checkDebuff() {
@@ -60,17 +63,17 @@ public class Fight {
             mediator.setDebuffLabel(enemy, true);
             enemy.loseDebuffTurn();
         }
-        if (!human.isDebuffed()) {
-            mediator.setDebuffLabel(human, false);
+        if (!player.isDebuffed()) {
+            mediator.setDebuffLabel(player, false);
         }
-        if (human.isDebuffed()) {
+        if (player.isDebuffed()) {
             mediator.setDebuffLabel(enemy, true);
-            human.loseDebuffTurn();
+            player.loseDebuffTurn();
         }
 
     }
 
-    public void hit(int a, ArrayList<Result> results, int locationsNumber, Player[] enemiesList) {
+    public void hit(int a, HashMap<String, Integer> results, int locationsNumber, Enemy[] enemiesList) {
         MidGameActions action = new MidGameActions();
         FightAction enemyAction = action.chooseEnemyAction(enemy, new ArrayList<>(actionsList));
         switch (a) {
@@ -96,21 +99,21 @@ public class Fight {
                 }
             }
         }
-        mediator.setRoundTexts(human, enemy);
+        mediator.setRoundTexts(player, enemy);
         checkDebuff();
-        mediator.setHealthBar(human);
+        mediator.setHealthBar(player);
         mediator.setHealthBar(enemy);
         checkDeath(results, locationsNumber, enemiesList);
     }
 
-    public void checkDeath(ArrayList<Result> results, int locationsNumber, Player[] enemiesList) {
-        if (human.getHealth() <= 0 & human.getItems()[2].getCount() > 0) {
-            human.setHealth((int) (human.getMaxHealth() * 0.05));
-            human.getItems()[2].setCount(-1);
-            mediator.setHealthBar(human);
-            mediator.revive(human, human.getItems());
+    public void checkDeath(HashMap<String, Integer> results, int locationsNumber, Enemy[] enemiesList) {
+        if (player.getHealth() <= 0 & player.getItems()[2].getCount() > 0) {
+            player.setHealth((int) (player.getMaxHealth() * 0.05));
+            player.getItems()[2].setCount(-1);
+            mediator.setHealthBar(player);
+            mediator.revive(player, player.getItems());
         }
-        if (human.getHealth() <= 0 | enemy.getHealth() <= 0) {
+        if (player.getHealth() <= 0 | enemy.getHealth() <= 0) {
             if (location.getCurrentLocation() == locationsNumber & "Shao Kahn".equals(enemy.getName())) {
                 location.resetLocation(false, 1);
                 endFinalRound(results, enemiesList);
@@ -120,19 +123,19 @@ public class Fight {
         }
     }
 
-    public void endRound(Player[] enemiesList) {
+    public void endRound(Enemy[] enemiesList) {
         MidGameActions action = new MidGameActions();
         mediator.setEndFightDialog();
-        if (human.getHealth() > 0) {
+        if (player.getHealth() > 0) {
             mediator.setRoundEndText("You win");
             mediator.setGIF(true);
             if ("Shao Kahn".equals(enemy.getName())) {
-                action.addItems(38, 23, 8, human.getItems());
-                action.addPointsBoss(human);
-                location.resetLocation(true, human.getLevel());
+                action.addItems(38, 23, 8, player.getItems());
+                action.addPointsBoss(player);
+                location.resetLocation(true, player.getLevel());
             } else {
-                action.addItems(25, 15, 5, human.getItems());
-                action.addPoints(human);
+                action.addItems(25, 15, 5, player.getItems());
+                action.addPoints(player);
             }
         } else {
             reset(enemiesList);
@@ -142,26 +145,26 @@ public class Fight {
         }
     }
 
-    public void reset(Player[] enemiesList) {
+    public void reset(Enemy[] enemiesList) {
         MidGameActions action = new MidGameActions();
-        human.setDamage(16);
-        human.setHealth(80);
-        human.setMaxHealth(80);
+        player.setDamage(16);
+        player.setHealth(80);
+        player.setMaxHealth(80);
         action.resetEnemies(enemiesList);
-        human.setLevel(0);
-        human.resetPoints();
-        human.resetExperience();
-        human.setNextExperience(40);
+        player.setLevel(0);
+        player.setPoints(0);
+        player.setExperience(0);
+        player.setNextLevelExperience(40);
         location.setFullEnemiesList(enemiesList);
-        location.resetLocation(false, human.getLevel());
+        location.resetLocation(false, player.getLevel());
     }
 
-    public void endFinalRound(ArrayList<Result> results, Player[] enemiesList ) {
+    public void endFinalRound(HashMap<String, Integer> results, Enemy[] enemiesList ) {
         MidGameActions action = new MidGameActions();
         action.resetEnemies(enemiesList);
         String text = "Победа не на вашей стороне";
-        if (human.getHealth() > 0) {
-            action.addPoints(human);
+        if (player.getHealth() > 0) {
+            action.addPoints(player);
             text = "Победа на вашей стороне";
         }
         boolean top = false;
@@ -169,8 +172,9 @@ public class Fight {
             top = true;
         } else {
             int a = 0;
-            for (int j = 0; j < results.size(); j++) {
-                if (human.getPoints() < results.get(j).getPoints()) {
+            for (Map.Entry<String, Integer> entry : results.entrySet()) {
+                Integer points = entry.getValue();
+                if (player.getPoints() < points) {
                     a++;
                 }
             }
@@ -182,11 +186,11 @@ public class Fight {
     }
 
     public void newRound() {
-        mediator.setPlayerMaxHealthBar(human);
+        mediator.setPlayerMaxHealthBar(player);
         mediator.setEnemyMaxHealthBar(enemy);
-        human.setHealth(human.getMaxHealth());
+        player.setHealth(player.getMaxHealth());
         enemy.setHealth(enemy.getMaxHealth());
-        mediator.setHealthBar(human);
+        mediator.setHealthBar(player);
         mediator.setHealthBar(enemy);
     }
 

@@ -2,6 +2,8 @@ package lab5;
 
 import fighters.Player;
 import fightActions.FightAction;
+import fighters.Enemy;
+import fighters.Fighter;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -85,18 +87,18 @@ public class Mediator {
         this.GIFLabel = GIFLabel;
     }
 
-    public void setActionLabels(Player enemy, Player human, FightAction enemyAction, FightAction playerAction) {
-        playerActionLabel.setText(human.getName() + " uses " + playerAction.getType());
+    public void setActionLabels(Fighter enemy, Fighter player, FightAction enemyAction, FightAction playerAction) {
+        playerActionLabel.setText(player.getName() + " uses " + playerAction.getType());
         enemyActionLabel.setText(enemy.getName() + " use " + enemyAction.getType());
     }
 
-    public void setDebuffLabel(Player player, boolean a) {
+    public void setDebuffLabel(Fighter player, boolean a) {
         if (a) {
             switch (player.getName()) {
                 case "You" ->
-                    playerDebuffLabel.setText(player.getName() + " are debuffed for " + player.getDebuffTurns() + " turns");
+                    playerDebuffLabel.setText(player.getName() + " are debuffed for " + player.getMovesWithDebuff()+ " turns");
                 default ->
-                    enemyDebuffLabel.setText(player.getName() + " is debuffed for " + player.getDebuffTurns() + " turns");
+                    enemyDebuffLabel.setText(player.getName() + " is debuffed for " + player.getMovesWithDebuff()+ " turns");
             }
         } else {
             switch (player.getName()) {
@@ -108,7 +110,7 @@ public class Mediator {
         }
     }
 
-    public void setHealthBar(Player player) {
+    public void setHealthBar(Fighter player) {
         switch (player.getName()) {
             case "You" -> {
                 if (player.getHealth() >= 0) {
@@ -126,15 +128,15 @@ public class Mediator {
             }
         }
     }
-    public void setPlayerMaxHealthBar(Player human){
-        playerHealthBar.setMaximum(human.getMaxHealth());
+    public void setPlayerMaxHealthBar(Player player){
+        playerHealthBar.setMaximum(player.getMaxHealth());
     }
-    public void setEnemyMaxHealthBar(Player enemy){
+    public void setEnemyMaxHealthBar(Enemy enemy){
         enemyHealthBar.setMaximum(enemy.getMaxHealth());
     }
 
-    public void revive(Player human, Item[] items) {
-        playerHealthLabel.setText(human.getHealth() + "/" + human.getMaxHealth());
+    public void revive(Player player, Item[] items) {
+        playerHealthLabel.setText(player.getHealth() + "/" + player.getMaxHealth());
         thirdItemButton.setText(items[2].getName() + ", " + items[2].getCount() + " шт");
         playerActionLabel.setText("Вы воскресли");
     }
@@ -170,28 +172,28 @@ public class Mediator {
         secondItemButton.setText(items[1].getName()+", "+items[1].getCount()+" шт");
         thirdItemButton.setText(items[2].getName()+", "+items[2].getCount()+" шт");
     }
-    public void setRoundTexts(Player human, Player enemy) {
+    public void setRoundTexts(Player player, Enemy enemy) {
         if (enemy.getHealth() >= 0) {
             enemyHealthLabel.setText(Integer.toString(enemy.getHealth()) + "/" + Integer.toString(enemy.getMaxHealth()));
         } else {
             enemyHealthLabel.setText("0/" + Integer.toString(enemy.getMaxHealth()));
         }
-        if (human.getHealth() >= 0) {
-            playerHealthLabel.setText(Integer.toString(human.getHealth()) + "/" + Integer.toString(human.getMaxHealth()));
+        if (player.getHealth() >= 0) {
+            playerHealthLabel.setText(Integer.toString(player.getHealth()) + "/" + Integer.toString(player.getMaxHealth()));
         } else {
-            playerHealthLabel.setText("0/" + Integer.toString(human.getMaxHealth()));
+            playerHealthLabel.setText("0/" + Integer.toString(player.getMaxHealth()));
         }
     }
-    public void setNewRoundTexts(Player human, Player enemy, Item[] items){
+    public void setNewRoundTexts(Player player, Enemy enemy, Item[] items){
         playerActionLabel.setText("");
         enemyActionLabel.setText("");
-        pointsValueLabel.setText(Integer.toString(((Human) human).getPoints()));
-        experienceValueLabel.setText(Integer.toString(((Human) human).getExperience()) + "/" + ((Human) human).getNextExperience());
-        playerLevelLabel.setText(Integer.toString((human.getLevel())+1) + " level");
+        pointsValueLabel.setText(Integer.toString(player.getPoints()));
+        experienceValueLabel.setText(Integer.toString(player.getExperience()) + "/" + player.getNextLevelExperience());
+        playerLevelLabel.setText(Integer.toString((player.getLevel())+1) + " level");
         enemyLevelLabel.setText(Integer.toString(enemy.getLevel()) + " level");
-        playerHealthLabel.setText(Integer.toString(human.getMaxHealth()) + "/" + Integer.toString(human.getMaxHealth()));
+        playerHealthLabel.setText(Integer.toString(player.getMaxHealth()) + "/" + Integer.toString(player.getMaxHealth()));
         enemyHealthLabel.setText(Integer.toString(enemy.getMaxHealth()) + "/" + Integer.toString(enemy.getMaxHealth()));
-        playerDamageValueLabel.setText(Integer.toString(human.getDamage()));
+        playerDamageValueLabel.setText(Integer.toString(player.getDamage()));
         setBagText(items);
     }
     public void setGIF(boolean a){

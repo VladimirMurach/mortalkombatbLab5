@@ -11,6 +11,7 @@ public class Enemy extends Fighter{
         this.name = name;
     }
 
+    @Override
     public String getName() {
         return name;
     }

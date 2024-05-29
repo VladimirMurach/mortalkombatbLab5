@@ -50,4 +50,9 @@ public class Player extends Fighter {
         this.items = items;
     }
 
+    @Override
+    public String getName() {
+        return "You";
+    }
+
 }
