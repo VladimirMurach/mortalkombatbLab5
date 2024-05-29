@@ -15,7 +15,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Game {
 
-    public MidGameActions action = new MidGameActions();
+    public GameActions action = new GameActions();
     public Fight fight = new Fight();
     private final ArrayList<Result> results = new ArrayList<>();
     private final Player enemies[] = new Player[5];

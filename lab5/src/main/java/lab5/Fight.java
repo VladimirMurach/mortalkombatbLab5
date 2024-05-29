@@ -74,7 +74,7 @@ public class Fight {
     }
 
     public void hit(int a, HashMap<String, Integer> results, int locationsNumber, Enemy[] enemiesList) {
-        MidGameActions action = new MidGameActions();
+        GameActions action = new GameActions();
         FightAction enemyAction = action.chooseEnemyAction(enemy, new ArrayList<>(actionsList));
         switch (a) {
             case 0 -> {
@@ -124,7 +124,7 @@ public class Fight {
     }
 
     public void endRound(Enemy[] enemiesList) {
-        MidGameActions action = new MidGameActions();
+        GameActions action = new GameActions();
         mediator.setEndFightDialog();
         if (player.getHealth() > 0) {
             mediator.setRoundEndText("You win");
@@ -146,7 +146,7 @@ public class Fight {
     }
 
     public void reset(Enemy[] enemiesList) {
-        MidGameActions action = new MidGameActions();
+        GameActions action = new GameActions();
         player.setDamage(16);
         player.setHealth(80);
         player.setMaxHealth(80);
@@ -160,7 +160,7 @@ public class Fight {
     }
 
     public void endFinalRound(HashMap<String, Integer> results, Enemy[] enemiesList ) {
-        MidGameActions action = new MidGameActions();
+        GameActions action = new GameActions();
         action.resetEnemies(enemiesList);
         String text = "Победа не на вашей стороне";
         if (player.getHealth() > 0) {

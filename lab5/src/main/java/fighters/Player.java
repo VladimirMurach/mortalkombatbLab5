@@ -1,21 +1,20 @@
 package fighters;
 
-import java.util.HashMap;
 import javax.swing.ImageIcon;
+import lab5.Item;
 
 public class Player extends Fighter {
     
     private int points;
     private int experience;
     private int nextLevelExperience;
-    private HashMap<String, Integer> items;
+    private Item[] items;
 
     public Player(int level, int maxhealth, int damage, ImageIcon icon) {
         super(level, maxhealth, damage, icon);
         points = 0;
         experience = 0;
         nextLevelExperience = 40;
-        items = new HashMap<>();
     }
 
     public int getPoints() {
@@ -42,11 +41,11 @@ public class Player extends Fighter {
         this.nextLevelExperience = nextLevelExperience;
     }
 
-    public HashMap<String, Integer> getItems() {
+    public Item[] getItems() {
         return items;
     }
 
-    public void setItems(HashMap<String, Integer> items) {
+    public void setItems(Item[] items) {
         this.items = items;
     }
 
