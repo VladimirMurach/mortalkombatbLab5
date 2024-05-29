@@ -1,6 +1,9 @@
-package lab5;
+package fightActions;
 
-public class Debuff extends Action {
+import lab5.Enemy;
+import lab5.Player;
+
+public class Debuff extends FightAction {
 
     @Override
     public String getType() {
@@ -8,13 +11,13 @@ public class Debuff extends Action {
     }
 
     @Override
-    public void realisation(Player human, Player enemy, String enemyActionType) {
+    public void realisation(Player player, Enemy enemy, String enemyActionType) {
         switch (enemyActionType) {
             case "Hit" -> {
             }
             case "Block" -> {
                 if (Math.random()<0.75){
-                    enemy.setDebuffTurns(enemy.getLevel());
+                    enemy.setMovesWithDebuff(enemy.getLevel());
                 }
             }
             case "Debuff" -> {

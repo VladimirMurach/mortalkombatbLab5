@@ -6,7 +6,7 @@ public abstract class Fighter {
     
     private int level;
     private int health;
-    private int maxhealth;
+    private int maxHealth;
     private int damage;
     private ImageIcon icon;
     private int movesWithDebuff;
@@ -14,7 +14,7 @@ public abstract class Fighter {
     public Fighter(int level, int maxhealth, int damage, ImageIcon icon) {
         this.level = level;
         this.health = maxhealth;
-        this.maxhealth = maxhealth;
+        this.maxHealth = maxhealth;
         this.damage = damage;
         this.icon = icon;
         movesWithDebuff = 0;
@@ -36,12 +36,12 @@ public abstract class Fighter {
         this.health = health;
     }
 
-    public int getMaxhealth() {
-        return maxhealth;
+    public int getMaxHealth() {
+        return maxHealth;
     }
 
-    public void setMaxhealth(int maxhealth) {
-        this.maxhealth = maxhealth;
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
     }
 
     public int getDamage() {
@@ -68,4 +68,7 @@ public abstract class Fighter {
         this.movesWithDebuff = movesWithDebuff;
     }
     
+    public boolean isDebuffed() {
+        return movesWithDebuff > 0;
+    }
 }

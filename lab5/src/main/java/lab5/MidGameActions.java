@@ -1,12 +1,13 @@
 package lab5;
 
+import fightActions.FightAction;
 import java.util.ArrayList;
 
 public class MidGameActions {
 
     private final int experience_for_next_level[] = {40, 90, 180, 260, 410, 1000};
 
-    public Action chooseEnemyAction(Player enemy, ArrayList<Action> list) {
+    public FightAction chooseEnemyAction(Player enemy, ArrayList<FightAction> list) {
         switch (enemy.getName()) {
             case "Sub-Zero" -> {
                 return list.get((int) (Math.random() * 3));

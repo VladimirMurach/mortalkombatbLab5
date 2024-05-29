@@ -1,5 +1,6 @@
 package lab5;
 
+import fightActions.FightAction;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -83,7 +84,7 @@ public class Mediator {
         this.GIFLabel = GIFLabel;
     }
 
-    public void setActionLabels(Player enemy, Player human, Action enemyAction, Action playerAction) {
+    public void setActionLabels(Player enemy, Player human, FightAction enemyAction, FightAction playerAction) {
         playerActionLabel.setText(human.getName() + " uses " + playerAction.getType());
         enemyActionLabel.setText(enemy.getName() + " use " + enemyAction.getType());
     }

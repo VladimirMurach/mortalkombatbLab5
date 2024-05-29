@@ -1,5 +1,10 @@
 package lab5;
 
+import fightActions.Debuff;
+import fightActions.FightAction;
+import fightActions.Hit;
+import fightActions.Heal;
+import fightActions.Block;
 import java.util.ArrayList;
 
 public class Fight {
@@ -7,7 +12,7 @@ public class Fight {
     Human human;
     Player enemy;
     public Location location = new Location();
-    public ArrayList<Action> actionsList = new ArrayList<>() {
+    public ArrayList<FightAction> actionsList = new ArrayList<>() {
         {
             add(new Hit());
             add(new Block());
@@ -36,12 +41,12 @@ public class Fight {
         return this.enemy;
     }
 
-    public void playerMove(Action enemyAction, Action playerAction) {
+    public void playerMove(FightAction enemyAction, FightAction playerAction) {
         mediator.setActionLabels(enemy, human, enemyAction, playerAction);
         playerAction.realisation(human, enemy, enemyAction.getType());
     }
 
-    public void enemyMove(Action enemyAction, Action playerAction) {
+    public void enemyMove(FightAction enemyAction, FightAction playerAction) {
         mediator.setActionLabels(human, enemy, enemyAction, playerAction);
         playerAction.realisation(enemy, human, enemyAction.getType());
     }
@@ -66,7 +71,7 @@ public class Fight {
 
     public void hit(int a, ArrayList<Result> results, int locationsNumber, Player[] enemiesList) {
         MidGameActions action = new MidGameActions();
-        Action enemyAction = action.chooseEnemyAction(enemy, new ArrayList<>(actionsList));
+        FightAction enemyAction = action.chooseEnemyAction(enemy, new ArrayList<>(actionsList));
         switch (a) {
             case 0 -> {
                 playerMove(enemyAction,

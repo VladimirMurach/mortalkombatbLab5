@@ -1,6 +1,9 @@
-package lab5;
+package fightActions;
 
-public class Heal extends Action {
+import lab5.Enemy;
+import lab5.Player;
+
+public class Heal extends FightAction {
 
     @Override
     public String getType() {
@@ -8,12 +11,12 @@ public class Heal extends Action {
     }
 
     @Override
-    public void realisation(Player human, Player enemy, String enemyActionType) {
+    public void realisation(Player player, Enemy enemy, String enemyActionType) {
         switch (enemyActionType) {
             case "Hit" -> {
             }
             case "Block" -> {
-                human.addHealth((human.getMaxHealth() - human.getHealth()) / 2);
+                player.setHealth((player.getMaxHealth() - player.getHealth()) / 2 + player.getHealth());
             }
             case "Debuff" -> {
             }
