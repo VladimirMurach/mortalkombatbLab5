@@ -8,8 +8,6 @@ import fightActions.Heal;
 import fightActions.Block;
 import fighters.Player;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Fight {
 
